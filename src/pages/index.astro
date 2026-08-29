@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Astro.glob nos da un array con TODOS los archivos que encajan con el patrón,
+// cada uno con su .frontmatter (los datos de la cabecera) y su .url
+const todasLasEntradas = await Astro.glob('./blog/*.md');
+
+// quitamos los borradores (draft: true) y ordenamos por fecha, la más nueva primero
+const posts = todasLasEntradas
+  .filter((post) => !post.frontmatter.draft)
+  .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+<Layout title="Cuaderno de bitácora">
+  <header class="site-header">
+    <p class="eyebrow">// notas mientras aprendo</p>
+    <a href="/" class="title-link"><h1>BIT A BITÁCORA</h1></a>
+    <p>
+      Pequeñas reflexiones sobre lo que voy aprendiendo en programación:
+      Java, bases de datos, web y todo lo que se va quedando por el camino.
+    </p>
+  </header>
+
+  <ol class="post-list">
+    {posts.map((post) => (
+      <li>
+        <div class="post-card" style={`--tag-color: var(--tag-${post.frontmatter.tag})`}>
+          <a class="card-link" href={post.url}>
+            <p class="post-date">
+              {new Date(post.frontmatter.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+            </p>
+            <h2>{post.frontmatter.title}</h2>
+            {post.frontmatter.description && <p class="description">{post.frontmatter.description}</p>}
+            <ul class="tags">
+              <li class={`tag tag-${post.frontmatter.tag}`}>{post.frontmatter.tag}</li>
+            </ul>
+          </a>
+        </div>
+      </li>
+    ))}
+  </ol>
+</Layout>
+

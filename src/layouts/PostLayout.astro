@@ -1,0 +1,27 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+
+const fecha = new Date(frontmatter.date).toLocaleDateString('es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+<Layout title={`${frontmatter.title} — cuaderno`} description={frontmatter.description}>
+  <a href="/" class="back-link">← volver al índice</a>
+  <article class="post-page">
+    <header>
+      <ul class="tags">
+        <li class={`tag tag-${frontmatter.tag}`}>{frontmatter.tag}</li>
+      </ul>
+      <h1>{frontmatter.title}</h1>
+      <p class="post-meta">{fecha}</p>
+    </header>
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
+</Layout>
+
