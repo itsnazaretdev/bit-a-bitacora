@@ -200,7 +200,7 @@ img {
 .back-link {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--ink-soft);
   text-decoration: none;
   margin-bottom: 1.5rem;
@@ -231,6 +231,13 @@ img {
 
 .post-content p {
   margin: 1rem 0;
+}
+
+.post-content img {
+  margin: 1.75rem auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 12px rgba(58, 53, 66, 0.08);
 }
 
 .post-content code {
