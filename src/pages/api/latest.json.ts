@@ -1,46 +1,50 @@
 import type { APIRoute } from 'astro';
 
-const BLOG_URL = 'https://bit-a-bitacora.vercel.app';
+const posts = import.meta.glob('../blog/*.md', {
+  eager: true,
+  import: 'frontmatter'
+});
 
-export const GET: APIRoute = async () => {
-  const todasLasEntradas = await Astro.glob('../blog/*.md');
-
-  const posts = todasLasEntradas
-    .filter((post) => !post.frontmatter.draft)
+export const GET: APIRoute = () => {
+  const entries = Object.entries(posts)
+    .filter(([, post]: any) => !post.draft)
     .sort(
-      (a, b) =>
-        new Date(b.frontmatter.date).getTime() -
-        new Date(a.frontmatter.date).getTime()
+      ([, a]: any, [, b]: any) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
-  const latest = posts[0];
-
-  if (!latest) {
+  if (entries.length === 0) {
     return new Response(
       JSON.stringify({ error: 'No hay entradas disponibles' }),
       {
         status: 404,
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       }
     );
   }
 
+  const [filePath, latest]: any = entries[0];
+
+  const slug = filePath
+    .split('/')
+    .pop()
+    ?.replace('.md', '');
+
   return new Response(
     JSON.stringify({
-      title: latest.frontmatter.title,
-      description: latest.frontmatter.description ?? '',
-      date: latest.frontmatter.date,
-      tag: latest.frontmatter.tag ?? '',
-      url: `${BLOG_URL}${latest.url}`,
+      title: latest.title,
+      description: latest.description ?? '',
+      date: latest.date,
+      tag: latest.tag ?? '',
+      url: `https://bit-a-bitacora.vercel.app/blog/${slug}`
     }),
     {
       status: 200,
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     }
   );
 };
-
