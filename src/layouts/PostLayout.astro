@@ -23,5 +23,54 @@ const fecha = new Date(frontmatter.date).toLocaleDateString('es-ES', {
       <slot />
     </div>
   </article>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
 </Layout>
 
+<style>
+  .post-content img {
+    cursor: zoom-in;
+  }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1;
+  cursor: zoom-out;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  if (lightbox && lightboxImg instanceof HTMLImageElement) {
+    document.querySelectorAll('.post-content img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = (img as HTMLImageElement).src;
+        lightboxImg.alt = (img as HTMLImageElement).alt;
+        lightbox.hidden = false;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.hidden = true;
+    });
+  }
+</script>
