@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Mi primera extensión para VS Code: Contrast Checker"
-date: 2026-09-19?????????
+date: 2026-09-23
 tag: reflexion
 description : "Cómo pasé de una lluvia de ideas con la IA a crear mi primera extensión de VS Code."
 ---
