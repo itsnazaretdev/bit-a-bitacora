@@ -22,6 +22,8 @@
   --tag-bbdd-ink: #4d3a63;
   --tag-reflexion: #f2d3de;
   --tag-reflexion-ink: #7a3450;
+  --tag-accesibilidad: #f2e3b8;
+  --tag-accesibilidad-ink: #6b5420;
   --tag-general: #cfe0f0;
   --tag-general-ink: #2d4d68;
 
@@ -193,6 +195,7 @@ img {
 .tag-web { background: var(--tag-web); color: var(--tag-web-ink); }
 .tag-bbdd { background: var(--tag-bbdd); color: var(--tag-bbdd-ink); }
 .tag-reflexion { background: var(--tag-reflexion); color: var(--tag-reflexion-ink); }
+.tag-accesibilidad { background: var(--tag-accesibilidad); color: var(--tag-accesibilidad-ink); }
 .tag-general { background: var(--tag-general); color: var(--tag-general-ink); }
 
 /* --- página de una entrada --- */
