@@ -8,7 +8,7 @@ description: "Quería hacer una extensión para entender proyectos y acabé con 
 
 ## De dónde salió
 
-Hace unos meses empecé **Codemapper**, lo que habría sido mi segunda extensión en VS Code, para visualizar en un diagrama cómo se relacionan las clases de un proyecto, en aquel entonces estaba a tope con Java haciendo mi aplicación 'Mi biblioteca', me llamaba mucho la atención la cantidad de clases que podía tener un proyecto y pensé en cómo ver visualmente esas conexiones para coger al vuelo cómo era por dentro. La idea me gustaba, pero pronto me di cuenta de que una extensión me limitaba mucho: la interfaz tiene que encajar dentro del editor y no podía hacer gran cosa a nivel visual, que es de lo que más me divierte.
+Hace unos meses empecé **Codemapper**, lo que habría sido mi segunda extensión en VS Code, para visualizar en un diagrama cómo se relacionan las clases de un proyecto, en aquel entonces estaba a tope con Java haciendo mi primera aplicación de escritorio 'Mi biblioteca', me llamaba mucho la atención la cantidad de clases que podía tener un proyecto y pensé en cómo ver visualmente esas conexiones para coger al vuelo cómo era por dentro. La idea me gustaba, pero pronto me di cuenta de que una extensión me limitaba mucho: la interfaz tiene que encajar dentro del editor y no podía hacer gran cosa a nivel visual, que es de lo que más me divierte.
 
 Entonces llegó el tercer reto del Hacktoberfest 2026 y empecé otro proyecto. Sin buscarlo, acabó siendo lo que yo quería con codemapper, pero en una web propia donde podía diseñar la interfaz como quisiera. Así nació **Sleepy Coder**.
 
