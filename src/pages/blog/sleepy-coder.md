@@ -31,7 +31,7 @@ El frontend está hecho con Astro, el backend con Fastify y los datos se guardan
 
 Mi idea inicial abarcaba más: un **agente** que arreglara las tareas él solo, en una rama aparte, y comprobara que todo seguía funcionando.
 
-Lo construí, y la parte de seguridad funcionaba bien. El problema era el modelo: al editar, Gemma reformateaba el archivo en vez de arreglarlo, borraba contenido o se inventaba el texto que tenía que buscar. Un modelo de 4B no da para tanto.
+Lo construí, pero el problema principal era el modelo: al editar, Gemma reformateaba el archivo en vez de arreglarlo, borraba contenido o se inventaba el texto que tenía que buscar. Un modelo de 4B no da para tanto.
 
 Así que cambié el enfoque:
 
