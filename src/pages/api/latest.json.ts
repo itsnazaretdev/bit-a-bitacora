@@ -5,6 +5,12 @@ const posts = import.meta.glob('../blog/*.md', {
   import: 'frontmatter'
 });
 
+// Lets other sites (like the portfolio) read this endpoint from the browser
+const headers = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*'
+};
+
 export const GET: APIRoute = () => {
   const entries = Object.entries(posts)
     .filter(([, post]: any) => !post.draft)
@@ -16,13 +22,7 @@ export const GET: APIRoute = () => {
   if (entries.length === 0) {
     return new Response(
       JSON.stringify({ error: 'No hay entradas disponibles' }),
-      {
-        status: 404,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
-      }
+      { status: 404, headers }
     );
   }
 
@@ -41,11 +41,6 @@ export const GET: APIRoute = () => {
       tag: latest.tag ?? '',
       url: `https://bit-a-bitacora.vercel.app/blog/${slug}`
     }),
-    {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
+    { status: 200, headers }
   );
 };
